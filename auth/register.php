@@ -42,9 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                    </svg>
                </span>
             </div>
-            <button type="submit">S'inscrire</button>
+            <button type="submit" class="btn-primary">S'inscrire</button>
         </form>
-        <p>Déjà inscrit ? <a href="login.php">Se connecter</a></p>
+        <p><strong>Déjà inscrit ?</strong> <a href="login.php">Se connecter</a></p>
     </div>
 
     <script src="../assets/js/biblio.js"></script>

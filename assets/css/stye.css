@@ -15,12 +15,22 @@ html {
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: url(..);
+    background: url();
     color: #333;
     line-height: 1.6;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+.body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('../images/bib.jpeg');
+    background-size: cover;         
+    background-position: center;     
+    background-repeat: no-repeat;    
+    background-attachment: scroll;  
+    min-height: 100vh;    
 }
 
 a {
@@ -94,40 +104,117 @@ h2 {
 /* ====================== */
 /*        FORMS           */
 /* ====================== */
-form {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
 
-.search-form {
+.google-search-container {
+    max-width: 700px;          
+    margin: 3rem 300px;    
+}        
+
+/* Le formulaire global */
+.google-search-form {
     display: flex;
-    max-width: 600px;
-    margin: 2rem auto;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-.search-form input {
-    flex: 1;
-    padding: 1rem;
-    border: none;
-    font-size: 1.1rem;
+/* Wrapper du champ + icône */
+.search-input-wrapper {
+    position: relative;
+    background: white;
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;       
+    box-shadow: none;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.search-form button {
-    padding: 0 1rem;
-    background: #3498db;
-    color: #fff;
+.search-input-wrapper:hover,
+.search-input-wrapper:focus-within {
+    box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+    border-color: rgba(223,225,229,0);
+}
+
+
+.search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9aa0a6;
+}
+
+/* Champ de saisie */
+.search-input-wrapper input {
+    width: 100%;
+    padding: 13px 16px 13px 48px;  
+    margin-bottom: -2px;
+    font-size: 16px;
     border: none;
+    background: transparent;
+    border-radius: 24px;
+}
+
+.search-input-wrapper input::placeholder {
+    color: #9aa0a6;
+    opacity: 0.8;
+}
+
+/* Zone des boutons (comme Google) */
+.search-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Boutons style Google */
+.google-btn {
+    background: #f8f9fa;
+    border: 1px solid #f8f9fa;
+    border-radius: 4px;
+    color: #3c4043;
+    font-size: 14px;
+    margin: 0 8px;
+    padding: 0 16px;
+    line-height: 27px;
+    height: 36px;
+    min-width: 54px;
+    text-align: center;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.15s ease;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
-.search-form button:hover {
-    background: #2980b9;
+.google-btn:hover {
+    background: #f8f9fa;
+    border: 1px solid #dadce0;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.google-btn:focus {
+    outline: none;
+    border: 1px solid #4285f4;
+    box-shadow: 0 0 0 1px #4285f4;
+}
+
+/* Bouton "J'ai de la chance" un peu différent */
+.luck-btn {
+    color: #202124;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .google-search-container {
+        max-width: 90%;
+        margin: 2rem auto;
+    }
+
+    .search-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .google-btn {
+        width: 100%;
+    }
 }
 
 form input,
@@ -168,7 +255,11 @@ form label {
 }
 
 .btn-primary {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
     background: #3498db;
+    align-self:flex-end;
     color: #fff;
     border: none;
 }
@@ -407,6 +498,42 @@ input[type="file"] {
 .book-cover-link:focus {
     outline: 2px solid var(--primary-color); 
     outline-offset: 2px;
+}
+
+/* CSS pour la div de bienvenue */
+.welcome-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Georgia', serif; /* Police élégante pour un effet "livre" */
+    font-size: 1.3rem;
+    line-height: 1.7;
+    color: #2c3e50;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(6px);
+}
+
+#welcome-text {
+    opacity: 0;
+    animation: fadeIn 1s forwards 0.5s; /* Apparition douce après 0.5s */
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Effet curseur clignotant (optionnel, très réaliste) */
+#welcome-text::after {
+    content: '|';
+    animation: blink 0.8s infinite;
+    color: #3498db;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
 }
 
 /* ====================== */

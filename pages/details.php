@@ -50,7 +50,7 @@ if (!$livre) die("Livre non trouvé.");
             <input type="hidden" name="id_livre" value="<?= $id ?>">
             <button type="submit" class="btn-primary">Ajouter à ma liste</button>
         </form>
-        <a href="results.php" class="btn">Retour</a>
+        <a href="results.php" class="btn-primary">Retour</a>
     </div>
 </body>
 </html>
