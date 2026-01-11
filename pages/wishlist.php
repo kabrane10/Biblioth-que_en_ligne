@@ -66,12 +66,29 @@ if (isset($_GET['success'])) {
             <p>Votre liste est vide. <a href="../index.php">Chercher des livres</a></p>
         <?php else: ?>
             <ul class="book-list">
-                <?php foreach($liste as $item): ?>
+               <?php foreach($liste as $item): ?>
                     <li>
-                        <strong><?= htmlspecialchars($item['titre']) ?></strong> 
-                        par <?= htmlspecialchars($item['auteur']) ?>
-                        (Ajouté le <?= $item['date_emprunt'] ?>)
-                        <a href="remove_from_wishlist.php?id_livre=<?= $item['id'] ?>" class="btn-danger">Retirer</a>
+                      <!-- Image cliquable vers détails -->
+                      <a href="details.php?id=<?= $item['id'] ?>" class="book-cover-link">
+                          <?php if (!empty($item['image'])): ?>
+                              <img src="../<?= htmlspecialchars($item['image']) ?>" 
+                                   alt="Couverture de <?= htmlspecialchars($item['titre']) ?>" 
+                                   class="book-cover-small">
+                          <?php else: ?>
+                              <div class="no-image">Pas de couverture</div>
+                          <?php endif; ?>
+                        </a>
+
+                      <!-- Infos du livre -->
+                        <div class="book-info">
+                          <strong><?= htmlspecialchars($item['titre']) ?></strong>
+                          <span>par <?= htmlspecialchars($item['auteur']) ?></span>
+                          <span class="date-ajout">(Ajouté le <?= $item['date_emprunt'] ?>)</span>
+                
+                          <!-- Bouton retirer (reste à côté) -->
+                          <a href="remove_from_wishlist.php?id_livre=<?= $item['id'] ?>" 
+                             class="btn-danger">Retirer</a>
+                        </div>
                     </li>
                 <?php endforeach; ?>
             </ul>

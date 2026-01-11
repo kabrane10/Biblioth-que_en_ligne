@@ -322,6 +322,92 @@ table tr:hover {
 .book-info {
     flex: 1;
 }
+input[type="file"] {
+    display: block;
+    visibility: visiblt;
+    opacity: 1;
+    margin: 1rem 0;
+    padding: 0.5rem;
+}
+/* Css pour images de wihslist.php */
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(700px, 1fr));
+    gap: 1.5rem; 
+}
+
+.book-list li {
+    background: white;
+    padding: 1.2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    gap: 1rem;               /* Espace entre image et texte */
+    align-items: flex-start;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-list li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.book-cover-small {
+    width: 100px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    flex-shrink: 0;
+}
+
+.no-image {
+    width: 90px;
+    height: 130px;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: #999;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.book-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.date-ajout {
+    font-size: 0.9rem;
+    color: #777;
+    font-style: italic;
+}
+
+.btn-danger {
+    align-self:flex-end;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+.book-cover-link {
+    display: block;              
+    text-decoration: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.book-cover-link:hover {
+    transform: scale(1.05);      
+    opacity: 0.92;
+}
+
+.book-cover-link:focus {
+    outline: 2px solid var(--primary-color); 
+    outline-offset: 2px;
+}
 
 /* ====================== */
 /*       RESPONSIVE       */

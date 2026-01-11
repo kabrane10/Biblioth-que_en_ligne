@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Modifier le livre</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/stye.css">
 </head>
 <body>
     <?php include '../pages/header.php'; ?>
@@ -88,9 +88,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="POST" enctype="multipart/form-data">
             <input type="text" name="titre" value="<?= htmlspecialchars($livre['titre']) ?>" required>
             <input type="text" name="auteur" value="<?= htmlspecialchars($livre['auteur']) ?>" required>
-            <textarea name="description" rows="4"><?= htmlspecialchars($livre['description']) ?></textarea>
             <input type="text" name="maison_edition" value="<?= htmlspecialchars($livre['maison_edition']) ?>">
             <input type="number" name="nombre_exemplaire" value="<?= $livre['nombre_exemplaire'] ?>" min="0" required>
+            <textarea name="description" rows="4"><?= htmlspecialchars($livre['description']) ?></textarea>
             
             <label for="image">Nouvelle couverture (laisser vide pour conserver l'actuelle)</label>
             <input type="file" name="image" id="image" accept="image/jpeg,image/png,image/gif">

@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Ajouter un livre</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/stye.css">
 </head>
 <body>
     <?php include '../pages/header.php'; ?>
@@ -75,8 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" name="maison_edition" placeholder="Maison d'édition">
             <input type="number" name="nombre_exemplaire" value="1" min="0" required>
             <textarea name="description" placeholder="Description" rows="4"></textarea>
-            
-            <!-- Champ pour l'image -->
+
             <label for="image">Couverture du livre (JPG, PNG, GIF - max 2MB)</label>
             <input type="file" name="image" id="image" accept="image/jpeg,image/png,image/gif">
 
