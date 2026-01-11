@@ -1,6 +1,4 @@
 <?php
-// pages/add_to_wishlist.php
-
 // Démarre la session en premier
 if (session_status() === PHP_SESSION_NONE) {
     // session_start();
@@ -27,9 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_livre'])) {
     if ($check->rowCount() === 0) {
         $stmt = $pdo->prepare("INSERT INTO liste_lecture (id_livre, id_lecteur, date_emprunt) VALUES (?, ?, ?)");
         $stmt->execute([$id_livre, $id_lecteur, $date_emprunt]);
-        
-        // Message de succès optionnel (tu peux l'ajouter dans wishlist.php plus tard)
+       
     }
+    // Message de succès 
+    
+    header('Location: wishlist.php?success=added');
+    exit;
 
     // Redirection vers la liste de lecture pour voir le résultat
     header('Location: wishlist.php');

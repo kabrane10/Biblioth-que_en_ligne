@@ -20,6 +20,10 @@ if (isset($_GET['id_livre'])) {
     $stmt->execute([$id_livre, $id_lecteur]);
 }
 
+//Message de succès
+header('Location: wishlist.php?success=removed');
+exit;
+
 header('Location: wishlist.php');
 exit;
 ?>

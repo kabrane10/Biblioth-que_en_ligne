@@ -33,6 +33,13 @@ if (!$livre) die("Livre non trouvé.");
 <body>
     <?php include './header.php'; ?>
     <div class="container book-detail">
+    <?php if (!empty($livre['image'])): ?>
+        <img src="../<?= htmlspecialchars($livre['image']) ?>" 
+             alt="Couverture de <?= htmlspecialchars($livre['titre']) ?>" 
+             class="book-cover-large">
+    <?php else: ?>
+        <div class="no-image-large">Aucune couverture disponible</div>
+    <?php endif; ?>
         <h2><?= htmlspecialchars($livre['titre']) ?></h2>
         <p><strong>Auteur :</strong> <?= htmlspecialchars($livre['auteur']) ?></p>
         <p><strong>Description :</strong> <?= nl2br(htmlspecialchars($livre['description'])) ?></p>

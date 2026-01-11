@@ -28,14 +28,22 @@ $livres = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <ul class="book-list">
     <?php foreach ($livres as $livre): ?>
         <li>
-            <strong><?= htmlspecialchars($livre['titre']) ?></strong>
-            par <?= htmlspecialchars($livre['auteur']) ?>
-            <div class="actions">
-                <a href="details.php?id=<?= urlencode($livre['id']) ?>" class="btn">Voir détails</a>
+            <?php if (!empty($livre['image'])): ?>
+                <img src="../<?= htmlspecialchars($livre['image']) ?>" 
+                     alt="Couverture de <?= htmlspecialchars($livre['titre']) ?>" 
+                     class="book-cover-small">
+            <?php else: ?>
+                <div class="no-image">Pas de couverture</div>
+            <?php endif; ?>
+            
+            <div class="book-info">
+                <strong><?= htmlspecialchars($livre['titre']) ?></strong>
+                <span>par <?= htmlspecialchars($livre['auteur']) ?></span>
+                <a href="details.php?id=<?= $livre['id'] ?>" class="btn">Voir détails</a>
             </div>
         </li>
-       <?php endforeach; ?>
-        </ul>
+    <?php endforeach; ?>
+</ul>
            
         <?php endif; ?>
         

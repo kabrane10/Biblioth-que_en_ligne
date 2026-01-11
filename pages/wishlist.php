@@ -1,7 +1,9 @@
 <?php
+
 if (session_status() === PHP_SESSION_NONE) {
     // session_start();
 }
+
 include '../config/database.php';
 
 if (!isset($_SESSION['user_id'])) {
@@ -18,6 +20,26 @@ $stmt = $pdo->prepare("
 ");
 $stmt->execute([$id_lecteur]);
 $liste = $stmt->fetchAll();
+
+// Récupère le message de succès ou d'erreur via GET
+$message = '';
+$message_type = ''; // 'success' ou 'error'
+if (isset($_GET['success'])) {
+    switch ($_GET['success']) {
+        case 'added':
+            $message = "Livre ajouté à votre liste avec succès !";
+            $message_type = 'success';
+            break;
+        case 'removed':
+            $message = "Livre retiré de votre liste avec succès.";
+            $message_type = 'success';
+            break;
+        // Ajoute d'autres cas si besoin
+    }
+} elseif (isset($_GET['error'])) {
+    $message = "Une erreur est survenue. Veuillez réessayer.";
+    $message_type = 'error';
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,9 +50,18 @@ $liste = $stmt->fetchAll();
     <link rel="stylesheet" href="../assets/css/stye.css">
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <?php include '../pages/header.php'; ?>
     <div class="container">
         <h2>Ma liste de lecture (<?= count($liste) ?> livre(s))</h2>
+        
+        <!-- Affichage du message de succès/erreur -->
+        <?php if ($message): ?>
+            <p id="flash-message" style="padding: 1rem; border-radius: 8px; font-weight: bold; 
+                <?php echo $message_type === 'success' ? 'background: #d4edda; color: #155724;' : 'background: #f8d7da; color: #721c24;'; ?>">
+                <?= htmlspecialchars($message) ?>
+            </p>
+        <?php endif; ?>
+        
         <?php if(empty($liste)): ?>
             <p>Votre liste est vide. <a href="../index.php">Chercher des livres</a></p>
         <?php else: ?>
@@ -46,5 +77,19 @@ $liste = $stmt->fetchAll();
             </ul>
         <?php endif; ?>
     </div>
+
+    <!-- JavaScript pour faire disparaître le message après 2 secondes -->
+    <?php if ($message): ?>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const messageElement = document.getElementById('flash-message');
+                if (messageElement) {
+                    setTimeout(function() {
+                        messageElement.style.display = 'none';
+                    }, 2000); // 2000ms = 2 secondes
+                }
+            });
+        </script>
+    <?php endif; ?>
 </body>
 </html>
