@@ -1,6 +1,6 @@
 <?php
 include '../config/database.php';
-if (!isset($_SESSION['user_id'])) header('Location: ../auth/login.php');
+if (!isset($_SESSION['user_id'])) header('Location: ../auth/connexion.php');
 
 $id = intval($_GET['id'] ?? 0);
 if ($id > 0) {

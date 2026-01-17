@@ -1,7 +1,7 @@
 <?php
 include '../config/database.php';
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../auth/login.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
+    header('Location: ../auth/connexion.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
     exit;
 }
 
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $message = "Seuls les formats JPG, JPEG, PNG et GIF sont autorisés.";
         } elseif ($_FILES['image']['size'] > 2 * 1024 * 1024) { // Limite 2MB
             $message = "L'image est trop lourde (max 2MB).";
-        } else {
+        } else {  
             // Nom d'image basé sur le titre (slugifié)
             $slug = strtolower(preg_replace('/[^a-z0-9]+/', '-', $titre));
             $new_filename = $slug . '-' . time() . '.' . $file_ext; // time() pour éviter collisions
@@ -59,6 +59,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Ajouter un livre</title>
     <link rel="stylesheet" href="../assets/css/stye.css">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+</style>
 </head>
 <body>
     <?php include '../pages/header.php'; ?>
@@ -70,10 +73,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <form method="POST" enctype="multipart/form-data">
+
+            <label for="titre">Titre du Livre</label>
             <input type="text" name="titre" placeholder="Titre" required>
+
+            <label for="auteur">Auteur du Livre</label>
             <input type="text" name="auteur" placeholder="Auteur" required>
+
+            <label for="maison_edition">Maison d'édition</label>
             <input type="text" name="maison_edition" placeholder="Maison d'édition">
+
+            <label for="nombre_exemplaire">Nombre d'Exemplaires</label>
             <input type="number" name="nombre_exemplaire" value="1" min="0" required>
+
+            <label for="description">Description du Livre</label>
             <textarea name="description" placeholder="Description" rows="4"></textarea>
 
             <label for="image">Couverture du livre (JPG, PNG, GIF - max 2MB)</label>

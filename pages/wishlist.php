@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 include '../config/database.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../auth/login.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
+    header('Location: ../auth/connexion.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
     exit;
 }
 
@@ -48,6 +48,9 @@ if (isset($_GET['success'])) {
     <meta charset="UTF-8">
     <title>Ma liste de lecture</title>
     <link rel="stylesheet" href="../assets/css/stye.css">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+</style>
 </head>
 <body>
     <?php include '../pages/header.php'; ?>

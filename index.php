@@ -1,8 +1,10 @@
 <?php 
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+ if (session_status() === PHP_SESSION_NONE) {
+//     session_start();
 }
+
+require_once __DIR__ . '/config/database.php';
  ?>
 
 
@@ -13,6 +15,10 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bibliothèque en Ligne</title>
     <link rel="stylesheet" href="./assets/css/stye.css">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+</style>
+
 </head>
 <body class="body">
     <?php require './pages/header.php'; ?>
@@ -43,7 +49,7 @@ if (session_status() === PHP_SESSION_NONE) {
 </div>
 <div class="welcome-container">
     <p id="welcome-text">
-    Bienvenue à la Bibliothèque Lumière d'Étoiles.
+    Bienvenue <?= htmlspecialchars($_SESSION['user_nom']) ?> à la Bibliothèque Lumière d'Étoiles.
     Ici, chaque livre est une fenêtre ouverte sur un monde nouveau. Que vous soyez passionné de 
     récits intemporels, curieux d'aventures imaginaires ou en quête de connaissances, notre collection 
     vous attend avec douceur. Prenez le temps de flâner entre les pages, laissez-vous guider par vos envies... 
@@ -53,7 +59,7 @@ if (session_status() === PHP_SESSION_NONE) {
        
 <script>
     // Le texte à faire apparaître progressivement
-    const welcomeMessage = "Bienvenue à la Bibliothèque Lumière d'Étoiles. Ici, chaque livre est une fenêtre ouverte sur un monde nouveau. Que vous soyez passionné de récits intemporels, curieux d'aventures imaginaires ou en quête de connaissances, notre collection vous attend avec douceur. Prenez le temps de flâner entre les pages, laissez-vous guider par vos envies... votre prochaine lecture préférée est déjà là, quelque part entre ces lignes. Bonne découverte !";
+    const welcomeMessage = "Bienvenue <?= htmlspecialchars($_SESSION['user_nom']) ?> à la Bibliothèque Lumière d'Étoiles. Ici, chaque livre est une fenêtre ouverte sur un monde nouveau. Que vous soyez passionné de récits intemporels, curieux d'aventures imaginaires ou en quête de connaissances, notre collection vous attend avec douceur. Prenez le temps de flâner entre les pages, laissez-vous guider par vos envies... votre prochaine lecture préférée est déjà là, quelque part entre ces lignes. Bonne découverte !";
 
     // Vitesse d'écriture (en millisecondes par caractère)
     const typingSpeed = 60; // 60 = assez fluide, 100 = plus lent et théâtral

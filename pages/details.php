@@ -5,13 +5,13 @@ if (session_status() === PHP_SESSION_NONE) {
     // session_start();
 }
 
-include '../config/database.php'; // Ou './config/database.php' selon le dossier
+include '../config/database.php'; 
 
 // Maintenant le check voit la session
 if (!isset($_SESSION['user_id'])) {
     // Redirection avec redirect pour revenir après connexion
     $current_url = $_SERVER['REQUEST_URI'];
-    header('Location: ../auth/login.php?redirect=' . urlencode($current_url));
+    header('Location: ../auth/connexion.php?redirect=' . urlencode($current_url));
     exit;
 }
 
@@ -29,6 +29,9 @@ if (!$livre) die("Livre non trouvé.");
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($livre['titre']) ?></title>
     <link rel="stylesheet" href="../assets/css/stye.css">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+</style>
 </head>
 <body>
     <?php include './header.php'; ?>
@@ -48,7 +51,7 @@ if (!$livre) die("Livre non trouvé.");
 
         <form action="add_to_wishlist.php" method="POST">
             <input type="hidden" name="id_livre" value="<?= $id ?>">
-            <button type="submit" class="btn-primary">Ajouter à ma liste</button>
+            <button type="submit" class="btn-ajout">Ajouter à ma liste</button>
         </form>
         <a href="results.php" class="btn-primary">Retour</a>
     </div>

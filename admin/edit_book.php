@@ -1,7 +1,7 @@
 <?php
 include '../config/database.php';
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../auth/login.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
+    header('Location: ../auth/connexion.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
     exit;
 }
 
@@ -70,6 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Modifier le livre</title>
     <link rel="stylesheet" href="../assets/css/stye.css">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+</style>
 </head>
 <body>
     <?php include '../pages/header.php'; ?>
@@ -86,10 +89,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <form method="POST" enctype="multipart/form-data">
+        <label for="titre">Titre du Livre</label>
             <input type="text" name="titre" value="<?= htmlspecialchars($livre['titre']) ?>" required>
+
+            <label for="auteur">Auteur du Livre</label>
             <input type="text" name="auteur" value="<?= htmlspecialchars($livre['auteur']) ?>" required>
+
+            <label for="maison_edition">Maison d'édition</label>
             <input type="text" name="maison_edition" value="<?= htmlspecialchars($livre['maison_edition']) ?>">
+
+            <label for="nombre_exemplaire">Nombre d'Exemplaires</label>
             <input type="number" name="nombre_exemplaire" value="<?= $livre['nombre_exemplaire'] ?>" min="0" required>
+
+            <label for="description">Description du Livre</label>
             <textarea name="description" rows="4"><?= htmlspecialchars($livre['description']) ?></textarea>
             
             <label for="image">Nouvelle couverture (laisser vide pour conserver l'actuelle)</label>

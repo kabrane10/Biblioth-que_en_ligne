@@ -8,7 +8,7 @@ include '../config/database.php';
 
 // Protection : doit être connecté
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../auth/login.php');
+    header('Location: ../auth/connexin.php');
     exit;
 }
 

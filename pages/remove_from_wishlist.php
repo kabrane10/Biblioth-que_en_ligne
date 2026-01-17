@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
 include '../config/database.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../auth/login.php');
+    header('Location: ../auth/connexion.php');
     exit;
 }
 
