@@ -1,11 +1,11 @@
 <?php 
 
- if (session_status() === PHP_SESSION_NONE) {
-//     session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 
 require_once __DIR__ . '/config/database.php';
- ?>
+?>
 
 
 <!DOCTYPE html>
@@ -49,7 +49,7 @@ require_once __DIR__ . '/config/database.php';
 </div>
 <div class="welcome-container">
     <p id="welcome-text">
-    Bienvenue <?= htmlspecialchars($_SESSION['user_nom']) ?> à la Bibliothèque Lumière d'Étoiles.
+    Bienvenue <?= isset($_SESSION['user_nom']) ? htmlspecialchars($_SESSION['user_nom']) . ' ' : '' ?>à la Bibliothèque Lumière d'Étoiles.
     Ici, chaque livre est une fenêtre ouverte sur un monde nouveau. Que vous soyez passionné de 
     récits intemporels, curieux d'aventures imaginaires ou en quête de connaissances, notre collection 
     vous attend avec douceur. Prenez le temps de flâner entre les pages, laissez-vous guider par vos envies... 
@@ -59,7 +59,7 @@ require_once __DIR__ . '/config/database.php';
        
 <script>
     // Le texte à faire apparaître progressivement
-    const welcomeMessage = "Bienvenue <?= htmlspecialchars($_SESSION['user_nom']) ?> à la Bibliothèque Lumière d'Étoiles. Ici, chaque livre est une fenêtre ouverte sur un monde nouveau. Que vous soyez passionné de récits intemporels, curieux d'aventures imaginaires ou en quête de connaissances, notre collection vous attend avec douceur. Prenez le temps de flâner entre les pages, laissez-vous guider par vos envies... votre prochaine lecture préférée est déjà là, quelque part entre ces lignes. Bonne découverte !";
+    const welcomeMessage = "Bienvenue <?= isset($_SESSION['user_nom']) ? htmlspecialchars($_SESSION['user_nom']) . ' ' : '' ?>à la Bibliothèque Lumière d'Étoiles. Ici, chaque livre est une fenêtre ouverte sur un monde nouveau. Que vous soyez passionné de récits intemporels, curieux d'aventures imaginaires ou en quête de connaissances, notre collection vous attend avec douceur. Prenez le temps de flâner entre les pages, laissez-vous guider par vos envies... votre prochaine lecture préférée est déjà là, quelque part entre ces lignes. Bonne découverte !";
 
     // Vitesse d'écriture (en millisecondes par caractère)
     const typingSpeed = 60; // 60 = assez fluide, 100 = plus lent et théâtral
